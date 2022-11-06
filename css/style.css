@@ -14,7 +14,6 @@ html {
 }
 
 body {
-
     backdrop-filter: blur(1px);
 }
 
@@ -70,9 +69,9 @@ main {
 }
 
 .card {
-    position: relative;
+  position: relative;
   width: 280px;
-  height: 410px;
+  height: 430px;
   border-radius: 15px;
   flex: 0 0 auto;
   margin: 15px;
