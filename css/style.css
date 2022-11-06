@@ -1,4 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;500;600;700;800&display=swap');
+@font-face {
+  font-family: Impact;
+  src: url(/fonts/impact.ttf);
+}
 
 * {
   margin: 0;
@@ -24,6 +28,10 @@ body {
   justify-content: space-around;
   width: 100%; 
   margin-top: 10px; 
+}
+
+.logo {
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
 }
 
 .nav {
