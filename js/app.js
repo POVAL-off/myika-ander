@@ -17,6 +17,62 @@ const app = () => {
     item.append(document.createElement('hr'));
     item.appendChild(bio);
     container.appendChild(item);
+
+    if (person.detail) {
+      item.classList.add('has-detail');
+      item.addEventListener('click', () => {
+        item.classList.toggle('active');
+      });
+      const detail = document.createElement('div');
+      detail.classList.add('detail');
+      detail.style.display = 'none';
+      const fullBio = document.createElement('p');
+      fullBio.classList.add('full-bio');
+      fullBio.innerHTML = person.detail.fullBio;
+      detail.appendChild(fullBio);
+      const chart = document.createElement('canvas');
+      chart.classList.add('myChart');
+
+      const thisMonth = new Date().getMonth() + 1;
+
+      const data = {
+        labels: month.slice(thisMonth - 5, thisMonth),
+        datasets: [{
+          label: 'Статистика випитого рева',
+          backgroundColor: '#9b111e',
+          borderColor: '#9b111e',
+          data: person.detail.revoData,
+        }]
+      };
+
+      const config = {
+        type: 'line',
+        data: data,
+        options: {}
+      };
+      const myChart = new Chart(chart.getContext('2d'), config);
+      detail.appendChild(chart);
+
+      const social = document.createElement('div');
+      social.classList.add('social');
+      const socialList = document.createElement('ul');
+      socialList.classList.add('social-list');
+      person.detail.social.forEach(socialItem => {
+          const socialItemEl = document.createElement('li');
+          socialItemEl.classList.add('social-item');
+          const socialLink = document.createElement('a');
+          socialLink.classList.add('social-link');
+          socialLink.href = socialItem.link;
+          socialLink.target = '_blank';
+          socialLink.innerHTML = socialItem.icon;
+          socialItemEl.appendChild(socialLink);
+          socialList.appendChild(socialItemEl);
+      })
+      social.appendChild(socialList);
+      detail.appendChild(social);
+
+      item.appendChild(detail);
+    }
   })
 }
 
@@ -36,7 +92,21 @@ const persons = [
     bio: `Один із розробників цього сайту. <br />
     По професії - програміст.<br />
     Закінчив ЗПФК, був лічно поздоровлений Петром Моставчуком.<br />
-    Знаходиться в стосунках.`
+    Знаходиться в стосунках.`,
+    detail: {
+      revoData: [30, 40, 25, 45, 5],
+      fullBio: `Так як я один з розробників сайту, всі нові фішки в перву чергу получаю я )))`,
+      social: [
+      {
+        link: 'https://t.me/all_die',
+        icon: '<i class="fab fa-telegram"></i>'
+      },
+      {
+          link: 'https://www.instagram.com/popovitchvalera/',
+          icon: '<i class="fab fa-instagram"></i>'
+      }
+      ]
+    }
   },
   {
     name: 'Вадім Мотринець',
@@ -184,5 +254,19 @@ const persons = [
   }
 ]
 
+const month = [
+    'Січень',
+    'Лютий',
+    'Березень',
+    'Квітень',
+    'Травень',
+    'Червень',
+    'Липень',
+    'Серпень',
+    'Вересень',
+    'Жовтень',
+    'Листопад',
+    'Грудень'
+]
 app();
 

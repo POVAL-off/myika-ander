@@ -84,15 +84,16 @@ main {
   flex: 0 0 auto;
   margin: 15px;
   text-align: center;
-  overflow: hidden;
   background-color: #ccccccee;
-  box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.5);
+    transition: 1s ease-in-out;
 }
 
 .card .photo {
   height: 180px;
   width: 100%;
   object-fit: cover;
+  border-radius: 15px 15px 0 0;
 }
 
 .card .name {
@@ -106,6 +107,99 @@ main {
     margin: 10px 0;
     font-weight: 600;
 }
+
+
+.card.active {
+    position: absolute;
+    z-index: 1;
+    margin: 0;
+    width: 100%;
+    height: 100%;
+    transform: translateY(calc(-100% + 450px));
+    border-radius: 0;
+    background-color: #ccc;
+}
+
+.card.active .photo {
+    height: 40%;
+    border-radius: 0;
+}
+
+.card.active .name {
+    text-align: left;
+    padding: 10px;
+    margin: 0;
+}
+
+.card.active hr {
+    display: none;
+}
+
+.card.active .bio {
+    text-align: left;
+    padding: 10px;
+    margin: 0;
+}
+
+.card.active .detail {
+    display: block !important;
+    padding: 10px;
+}
+
+.card .full-bio {
+    text-align: left;
+    font-size: 14px;
+    margin: 10px 0;
+    font-weight: 500;
+}
+
+.card .social-list {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin: 30px 0 10px;
+    padding: 0;
+    list-style: none;
+}
+
+.card .social-item a {
+    color: #000;
+    font-size: 24px;
+    margin: 0 10px;
+}
+
+.card.has-detail {
+    box-shadow: none;
+}
+
+.card.has-detail:before {
+    content: "";
+    z-index: -1;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: linear-gradient(-45deg, #e81cff 0%, #40c9ff 100% );
+    transform: translate3d(0px, 10px, 0) scale(0.95);
+    filter: blur(20px);
+    opacity: 0.7;
+    transition: opacity 0.3s;
+    border-radius: inherit;
+}
+
+.card.has-detail::after {
+    content: "";
+    z-index: -1;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: inherit;
+    border-radius: inherit;
+}
+
 
 hr {
   border: none;
