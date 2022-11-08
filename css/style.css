@@ -217,3 +217,27 @@ hr {
   width: 100%;
 }
 
+/* Дошка оголошень */
+h2 {
+  margin-top: 30px;
+  font-size: 30px;
+}
+
+.board-header {
+  font-size: 30px;
+  padding-top: 10px;
+  margin-bottom: 10px;
+  color: red;
+}
+
+.board-list {
+  list-style: none;
+}
+
+.board-photo {
+  width: 220px;
+}
+
+.board-text a {
+  color: rgb(211, 34, 34);
+}
