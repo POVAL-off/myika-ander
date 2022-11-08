@@ -86,7 +86,7 @@ main {
   text-align: center;
   background-color: #ccccccee;
   box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.5);
-    transition: 1s ease-in-out;
+  transition: 1s ease-in-out;
 }
 
 .card .photo {
