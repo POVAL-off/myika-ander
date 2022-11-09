@@ -45,7 +45,7 @@ const app = () => {
       if (person.detail.smokeRating) {
         const smokeRating = createRatingBlock({
           rating: person.detail.smokeRating,
-          title: 'Рейтинг вінстона синього: ',
+          title: 'Рейтинг сіг: ',
           className: 'rating smoke-rating',
           image: 'img/xs-black-blue.png'
         });
@@ -73,7 +73,7 @@ const app = () => {
 
         if (person.detail.sigaretData?.length) {
             data.datasets.push({
-                label: 'Скурених сіг',
+                label: 'Скурених вінстона синього',
                 backgroundColor: '#0a2789',
                 borderColor: '#0a2789',
                 data: person.detail.sigaretData,
