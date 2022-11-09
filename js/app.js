@@ -45,7 +45,7 @@ const app = () => {
       if (person.detail.smokeRating) {
         const smokeRating = createRatingBlock({
           rating: person.detail.smokeRating,
-          title: 'Рейтинг сіг: ',
+          title: 'Рейтинг вінстона синього: ',
           className: 'rating smoke-rating',
           image: 'img/xs-black-blue.png'
         });
