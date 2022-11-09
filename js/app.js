@@ -22,58 +22,78 @@ const app = () => {
       const detail = document.createElement('div');
       detail.classList.add('detail');
       detail.style.display = 'none';
-      const revoRaiting = createRatingBlock({
-        rating: person.detail.revoRating,
-        title: 'Рейтинг рева: ',
-        className: 'rating revo-rating',
-        image: 'img/revo-rating.webp'
-      });
-      const smokeRating = createRatingBlock({
-        rating: person.detail.smokeRating,
-        title: 'Рейтинг сіг: ',
-        className: 'rating smoke-rating',
-        image: 'img/xs-black-blue.png'
-      });
-      detail.appendChild(revoRaiting);
+      if (person.detail.revoRating) {
+        const revoRaiting = createRatingBlock({
+          rating: person.detail.revoRating,
+          title: 'Рейтинг рева: ',
+          className: 'rating revo-rating',
+          image: 'img/revo-rating.webp'
+        });
+
+        detail.appendChild(revoRaiting);
+      }
+      if (person.detail.smokeRating) {
+        const smokeRating = createRatingBlock({
+          rating: person.detail.smokeRating,
+          title: 'Рейтинг сіг: ',
+          className: 'rating smoke-rating',
+          image: 'img/xs-black-blue.png'
+        });
         detail.appendChild(smokeRating);
+      }
       const fullBio = createElement('p', 'full-bio', person.detail.fullBio);
       detail.appendChild(fullBio);
       const chart = document.createElement('canvas');
       chart.classList.add('myChart');
 
-      const thisMonth = new Date().getMonth() + 1;
+      if (person.detail.revoData || person.detail.smokeData) {
+        const thisMonth = new Date().getMonth() + 1;
 
-      const data = {
-        labels: month.slice(thisMonth - 5, thisMonth),
-        datasets: [
-          {
-            label: 'Статистика випитого рева',
-            backgroundColor: '#9b111e',
-            borderColor: '#9b111e',
-            data: person.detail.revoData,
-          },
-          {
-            label: 'Статистика скуреного тонкого собранія',
-            backgroundColor: '#0a2789',
-            borderColor: '#0a2789',
-            data: person.detail.sigaretData,
-          }
-        ]
-      };
+        const data = {
+          labels: month.slice(thisMonth - 5, thisMonth),
+          datasets: [
+            {
+              label: 'Випитого рева',
+              backgroundColor: '#9b111e',
+              borderColor: '#9b111e',
+              data: person.detail.revoData,
+            }
+          ]
+        };
 
-      const config = {
-        type: 'line',
-        data: data,
-        options: {}
-      };
-      const myChart = new Chart(chart.getContext('2d'), config);
-      detail.appendChild(chart);
+        if (person.detail.sigaretData?.length) {
+            data.datasets.push({
+                label: 'Скурених сіг',
+                backgroundColor: '#0a2789',
+                borderColor: '#0a2789',
+                data: person.detail.sigaretData,
+            });
+        }
 
-      const social = document.createElement('div');
-      social.classList.add('social');
-      const socialList = document.createElement('ul');
-      socialList.classList.add('social-list');
-      person.detail.social.forEach(socialItem => {
+        if (person.detail.vomitedRevoData?.length) {
+            data.datasets.push({
+                label: 'Виблювано рева',
+                backgroundColor: '#29831f',
+                borderColor: '#29831f',
+                data: person.detail.vomitedRevoData,
+            });
+        }
+
+        const config = {
+          type: 'line',
+          data: data,
+          options: {}
+        };
+        const myChart = new Chart(chart.getContext('2d'), config);
+        detail.appendChild(chart);
+      }
+
+      if (person.detail.social?.length) {
+        const social = document.createElement('div');
+        social.classList.add('social');
+        const socialList = document.createElement('ul');
+        socialList.classList.add('social-list');
+        person.detail.social.forEach(socialItem => {
           const socialItemEl = document.createElement('li');
           socialItemEl.classList.add('social-item');
           const socialLink = document.createElement('a');
@@ -83,9 +103,10 @@ const app = () => {
           socialLink.innerHTML = socialItem.icon;
           socialItemEl.appendChild(socialLink);
           socialList.appendChild(socialItemEl);
-      })
-      social.appendChild(socialList);
-      detail.appendChild(social);
+        })
+        social.appendChild(socialList);
+        detail.appendChild(social);
+      }
 
       item.appendChild(detail);
     }
@@ -167,7 +188,14 @@ const persons = [
           Зробив переворот над пелехатими і створив "Мийку Андер". <br />
           Зваблює всіх хлопців організації "Мийка Андер" <br />
           Один із синів Володимира Бігуна <br />
-          Девіз - <i>"Не постриг Саноцького - отримав по єбалу!"</i> <br />`
+          Девіз - <i>"Не постриг Саноцького - отримав по єбалу!"</i> <br />`,
+    detail: {
+      revoRating: 5,
+      smokeRating: 5,
+      revoData: [30, 40, 50, 55, 60],
+      vomitedRevoData: [0, 0, 1, 20, 0],
+      fullBio: '*на соцсеті лінь робити силку*'
+    }
   },
   {
     name: 'Яна Березун',
@@ -311,6 +339,18 @@ const persons = [
           Cімейний стан "закоханий".<br /> 
           Mріє про секс і пачку марвела.<br /> 
           Xуярит в чехії.`
+  },
+  {
+    name: 'Ніколетка Котлетка або мала бігунка.',
+    photo: './img/ніка.jpg',
+    bio: `Вадім Мотринець моя мала. <br/>
+          На мийці буваю чаще всіх остальних, жию там.
+          Маттірь всія мийки,
+          вирізала бога у 1750 році. <br />
+          Дуже люблю унижати жун,
+          переселилася у прагу бо начала войну мижи жонами у калинах.
+          Фрік, неформал, любітель водки, пива і вінстона.
+          Виєбала большенство  мийочнику у їх мічтах.`
   }
 ]
 
