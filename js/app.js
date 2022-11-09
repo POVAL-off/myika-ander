@@ -22,9 +22,21 @@ const app = () => {
       const detail = document.createElement('div');
       detail.classList.add('detail');
       detail.style.display = 'none';
-      const fullBio = document.createElement('p');
-      fullBio.classList.add('full-bio');
-      fullBio.innerHTML = person.detail.fullBio;
+      const revoRaiting = createRatingBlock({
+        rating: person.detail.revoRating,
+        title: 'Рейтинг рева: ',
+        className: 'rating revo-rating',
+        image: 'img/revo-rating.webp'
+      });
+      const smokeRating = createRatingBlock({
+        rating: person.detail.smokeRating,
+        title: 'Рейтинг сіг: ',
+        className: 'rating smoke-rating',
+        image: 'img/xs-black-blue.png'
+      });
+      detail.appendChild(revoRaiting);
+        detail.appendChild(smokeRating);
+      const fullBio = createElement('p', 'full-bio', person.detail.fullBio);
       detail.appendChild(fullBio);
       const chart = document.createElement('canvas');
       chart.classList.add('myChart');
@@ -33,12 +45,20 @@ const app = () => {
 
       const data = {
         labels: month.slice(thisMonth - 5, thisMonth),
-        datasets: [{
-          label: 'Статистика випитого рева',
-          backgroundColor: '#9b111e',
-          borderColor: '#9b111e',
-          data: person.detail.revoData,
-        }]
+        datasets: [
+          {
+            label: 'Статистика випитого рева',
+            backgroundColor: '#9b111e',
+            borderColor: '#9b111e',
+            data: person.detail.revoData,
+          },
+          {
+            label: 'Статистика скуреного тонкого собранія',
+            backgroundColor: '#0a2789',
+            borderColor: '#0a2789',
+            data: person.detail.sigaretData,
+          }
+        ]
       };
 
       const config = {
@@ -79,6 +99,32 @@ const createElement = (tag, className, html) => {
     return element;
 }
 
+const createRatingBlock = ({
+    rating,
+    title,
+    className,
+    image
+}) => {
+    const ratingBlock = document.createElement('div');
+    ratingBlock.classList.add(...className.split(' '));
+    const ratingOrder = createRating(rating, image);
+    ratingBlock.innerHTML = `
+        <p>${title}</p>
+        ${ratingOrder}
+    `;
+    return ratingBlock;
+};
+
+const createRating = (rating, image) => {
+    const ratingOrder = Array.from({ length: 5 }).map((_, index) => index < ~~rating ? `
+        <img class="active" src=${image || "img/revo-rating.webp"}></img>
+    ` : `
+        <img class="unactive" src=${image || "img/revo-rating.webp"}></img>
+    `).join('');
+    return ratingOrder;
+}
+
+
 const persons = [
   {
     name: 'Міша Канюка',
@@ -98,6 +144,9 @@ const persons = [
     Знаходиться в стосунках.`,
     detail: {
       revoData: [30, 40, 25, 45, 5],
+      revoRating: 4,
+      smokeRating: 3,
+      sigaretData: [0, 0, 15, 25, 5],
       fullBio: `Так як я один з розробників сайту, всі нові фішки в перву чергу получаю я )))`,
       social: [
       {

@@ -124,6 +124,8 @@ main {
 
 .card.active .photo {
     height: 40vh;
+    min-height: 200px;
+    max-height: 400px;
     border-radius: 0;
 }
 
@@ -145,7 +147,7 @@ main {
 
 .card.active .detail {
     display: block !important;
-    padding: 10px;
+    padding: 0 10px 10px;
 }
 
 .card .full-bio {
@@ -172,6 +174,23 @@ main {
 
 .card.has-detail {
     box-shadow: none;
+}
+
+.card .rating {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+    margin: 0 0 10px;
+}
+
+.card .rating img {
+    width: 20px;
+    height: 20px;
+}
+
+.card .rating img.unactive {
+    opacity: 0.5;
 }
 
 .card.has-detail:before {
