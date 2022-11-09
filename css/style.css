@@ -27,7 +27,7 @@ body {
   align-items: center;
   justify-content: space-around;
   width: 100%; 
-  margin-top: 10px; 
+  padding-top: 10px;
 }
 
 .logo {
@@ -86,7 +86,6 @@ main {
   text-align: center;
   background-color: #ccccccee;
   box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.5);
-  transition: 1s ease-in-out;
 }
 
 .card .photo {
@@ -111,17 +110,20 @@ main {
 
 .card.active {
     position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
     z-index: 1;
     margin: 0;
     width: 100%;
     height: 100%;
-    transform: translateY(calc(-100% + 450px));
     border-radius: 0;
     background-color: #ccc;
 }
 
 .card.active .photo {
-    height: 40%;
+    height: 40vh;
     border-radius: 0;
 }
 
@@ -232,6 +234,7 @@ h2 {
 
 .board-list {
   list-style: none;
+  padding: 0;
 }
 
 .board-photo {

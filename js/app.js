@@ -3,15 +3,11 @@ const app = () => {
   persons.forEach(person => {
     const item = document.createElement('div');
     item.classList.add('card');
-    const name = document.createElement('h3');
-    name.classList.add('name');
-    name.textContent = person.name;
+    const name = createElement('h3', 'name', person.name);
     const photo = document.createElement('img');
     photo.classList.add('photo');
     photo.src = person.photo;
-    const bio = document.createElement('p');
-    bio.classList.add('bio');
-    bio.innerHTML = person.bio;
+    const bio = createElement('p', 'bio', person.bio);
     item.appendChild(photo);
     item.appendChild(name);
     item.append(document.createElement('hr'));
@@ -74,6 +70,13 @@ const app = () => {
       item.appendChild(detail);
     }
   })
+}
+
+const createElement = (tag, className, html) => {
+    const element = document.createElement(tag);
+    element.classList.add(className);
+    element.innerHTML = html;
+    return element;
 }
 
 const persons = [
