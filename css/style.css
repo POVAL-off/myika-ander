@@ -79,7 +79,7 @@ main {
 .card {
   position: relative;
   width: 280px;
-  height: 430px;
+  height: 450px;
   border-radius: 15px;
   flex: 0 0 auto;
   margin: 15px;
@@ -235,6 +235,7 @@ hr {
   display: flex;
   flex-wrap: nowrap;
   overflow-x: auto;
+    overflow-y: hidden;
   width: 100%;
 }
 
