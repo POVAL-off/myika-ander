@@ -15,9 +15,19 @@ const app = () => {
     container.appendChild(item);
 
     if (person.detail) {
-      item.classList.add('has-detail');
+      switch (person.detail.status) {
+        case 'VIP':
+          item.classList.add('has-detail');
+          break;
+        case 'LOX':
+            item.classList.add('status-lox');
+            break;
+      }
       item.addEventListener('click', () => {
         item.classList.toggle('active');
+        if (item.classList.contains('active')) {
+          window.scrollTo({ top: 0 })
+        }
       });
       const detail = document.createElement('div');
       detail.classList.add('detail');
@@ -164,6 +174,7 @@ const persons = [
     Закінчив ЗПФК, був лічно поздоровлений Петром Моставчуком.<br />
     Знаходиться в стосунках.`,
     detail: {
+      status: 'VIP',
       revoData: [30, 40, 25, 45, 5],
       revoRating: 4,
       smokeRating: 3,
@@ -190,6 +201,7 @@ const persons = [
           Один із синів Володимира Бігуна <br />
           Девіз - <i>"Не постриг Саноцького - отримав по єбалу!"</i> <br />`,
     detail: {
+      status: 'LOX',
       revoRating: 5,
       smokeRating: 5,
       revoData: [30, 40, 50, 55, 60],
