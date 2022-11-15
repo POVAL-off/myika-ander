@@ -206,7 +206,7 @@ const persons = [
       smokeRating: 5,
       revoData: [30, 40, 50, 55, 60],
       vomitedRevoData: [0, 0, 1, 20, 0],
-      fullBio: '*на соцсеті лінь робити силку*'
+      fullBio: '*на соцсеті лінь робити силку* P.s. Валера <br /> *Мені тоже* P.s. Михайло'
     }
   },
   {
