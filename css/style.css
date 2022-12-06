@@ -89,6 +89,18 @@ main {
   box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.5);
 }
 
+.nazivka {
+  position: absolute;
+  right: 0;
+  top: 0;
+  background-color: #ef2020;
+  color: #eee;
+  padding: 5px 10px;
+  font-size: 12px;
+  font-weight: bold;
+  border-radius: 0 15px 0 15px;
+}
+
 .card .photo {
   height: 180px;
   width: 100%;
