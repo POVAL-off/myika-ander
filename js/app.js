@@ -16,6 +16,8 @@ const app = () => {
     item.appendChild(bio);
     container.appendChild(item);
 
+    // Якого хуя ти валера пишеш appendChild, коли є просто append? Поясни бо я не шарю
+
     if (person.detail) {
       switch (person.detail.status) {
         case 'VIP':
