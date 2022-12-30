@@ -16,7 +16,7 @@ const app = () => {
     item.appendChild(bio);
     container.appendChild(item);
 
-    // Якого хуя ти валера пишеш appendChild, коли є просто append? Поясни бо я не шарю
+    // Чому ти валера пишеш appendChild, коли є просто append? Поясни бо я не шарю
 
     if (person.detail) {
       switch (person.detail.status) {
@@ -74,7 +74,7 @@ const app = () => {
             }
           ]
         };
-
+              // а ще що значить цей V знак питання 
         if (person.detail.sigaretData?.length) {
             data.datasets.push({
                 label: 'Скурених вінстона синього',
