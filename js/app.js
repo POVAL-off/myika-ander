@@ -1,3 +1,4 @@
+
 const app = () => {
   const container = document.querySelector('.scroling-bio');
   persons.forEach(person => {
@@ -124,6 +125,15 @@ const app = () => {
 
       item.appendChild(detail);
     }
+    
+    const anekdotField = document.querySelector('.anekdot-field')
+    const anekdotBtn = document.querySelector('.generate-btn')
+
+    anekdotBtn.addEventListener('click', () => {
+      let anekdotID = Math.floor(Math.random() * anekdots.length)
+      anekdotField.innerHTML = anekdots[anekdotID]
+    })
+
   })
 }
 
@@ -388,7 +398,16 @@ const persons = [
           Фрік, неформал, любітель водки, пива і вінстона.
           Виєбала большенство  мийочнику у їх мічтах.
           Секс, но не крінж!`,
-    nazivka: 'МАМА' 
+    nazivka: 'МАМА'
+  },
+  {
+    name: 'Юлія Гавриліївна',
+    photo: './img/Ната-2.jpg',
+    bio: `Жительниця Красної - не людина. <br />
+    Не пє.<br />
+    Не курить.<br />
+    Краснян не любить і не признає за людей.<br />
+    Має декілька лічностей. <br />`
   }
 ]
 
@@ -406,5 +425,8 @@ const month = [
     'Листопад',
     'Грудень'
 ]
+
+import { anekdots } from "./aneks.js";
+
 app();
 
