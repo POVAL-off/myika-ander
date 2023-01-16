@@ -133,6 +133,11 @@ main {
     height: 100%;
     border-radius: 0;
     background-color: #ccc;
+
+}
+
+.card.active > .nazivka {
+  border-radius: 0 0 0 15px;
 }
 
 .card.active .photo {
@@ -187,19 +192,6 @@ main {
 
 .card.has-detail {
     box-shadow: none;
-}
-
-.card.status-lox:after {
-    content: 'РЕВОЛЮБ';
-    position: absolute;
-    top: 0;
-    right: 0;
-    background-color: #ef2020;
-    color: #eee;
-    padding: 5px 10px;
-    font-size: 12px;
-    font-weight: bold;
-    border-radius: 0 15px 0 15px;
 }
 
 .card .rating {
